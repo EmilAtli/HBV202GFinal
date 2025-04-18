@@ -17,7 +17,7 @@ public class AddBookCommand implements Command {
 
   @Override
   public String name() {
-    return "Add Book";
+    return "Add Book (single author) (admin only)";
   }
 
   @Override

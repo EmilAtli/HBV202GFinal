@@ -2,6 +2,7 @@ package is.hi.hbv202g.Final.ui;
 
 import is.hi.hbv202g.Final.LibrarySystem;
 import is.hi.hbv202g.Final.EmptyAuthorListException;
+import is.hi.hbv202g.Final.Admin;
 import is.hi.hbv202g.Final.Author;
 
 import java.util.ArrayList;
@@ -12,23 +13,29 @@ import java.util.stream.Collectors;
 public class AddBookMultiAuthorsCommand implements Command {
   private final LibrarySystem library;
   private final Scanner scanner;
+  private final Session session;
 
-  public AddBookMultiAuthorsCommand(LibrarySystem library, Scanner scanner) {
+  public AddBookMultiAuthorsCommand(LibrarySystem library, Scanner scanner, Session session) {
     this.library = library;
     this.scanner = scanner;
+    this.session = session;
   }
 
   @Override
   public String name() {
-    return "Add Book (multiple authors)";
+    return "Add Book (multiple authors) (admin only)";
   }
 
   @Override
   public void execute() {
+    if (!(session.getCurrentUser() instanceof Admin)) {
+      System.err.println("! Only admins can add books.\n");
+      return;
+    }
     System.out.print("  Title: ");
     String title = scanner.nextLine().trim();
 
-    System.out.print("  Authors (comma‑separated): ");
+    System.out.print("  Authors (comma-separated (,)): ");
     String line = scanner.nextLine().trim();
     List<Author> authors = new ArrayList<>();
     if (!line.isEmpty()) {

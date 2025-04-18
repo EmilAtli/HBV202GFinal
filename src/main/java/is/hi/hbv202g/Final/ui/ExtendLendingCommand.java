@@ -39,7 +39,7 @@ public class ExtendLendingCommand implements Command {
       System.out.print("  Book title: ");
       Book b = library.findBookByTitle(scanner.nextLine().trim());
 
-      System.out.print("  New due date (YYYY‑MM‑DD): ");
+      System.out.print("  New due date (YYYY-MM-DD): ");
       String dateStr = scanner.nextLine().trim();
       LocalDate newDue;
       try {

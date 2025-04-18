@@ -27,33 +27,46 @@ public class LibrarySystem {
     listeners.remove(l);
   }
 
-  /** 2‑arg convenience: single‐author, 1 copy */
+  /** --- Book adding methods --- */
+
+  /** 2 argument: single‐author, 1 copy */
   public void addBookWithTitleAndNameOfSingleAuthor(String title, String authorName) {
     addBookWithTitleAndNameOfSingleAuthor(title, authorName, 1);
   }
 
-  /** Core: single‐author with specified copies */
+  /** Core: single author with specified copies */
   public void addBookWithTitleAndNameOfSingleAuthor(
       String title, String authorName, int copies) {
     try {
       books.add(new Book(title, authorName, copies));
     } catch (EmptyAuthorListException e) {
-      // impossible here since we always supply one author
     }
   }
 
-  /** 2‑arg convenience: multi‑author, 1 copy */
+  /** 2 arguments: multi‑author, 1 copy */
   public void addBookWithTitleAndAuthorList(String title, List<Author> authors)
       throws EmptyAuthorListException {
     addBookWithTitleAndAuthorList(title, authors, 1);
   }
 
-  /** Core: multi‑author with specified copies */
+  /** Core: multi author with specified copies */
   public void addBookWithTitleAndAuthorList(
       String title, List<Author> authors, int copies)
       throws EmptyAuthorListException {
     books.add(new Book(title, authors, copies));
   }
+
+  /** Introduce a composite Omnibus into the catalog. */
+  public void addOmnibus(String title, List<Book> volumes)
+      throws EmptyAuthorListException {
+    for (Book vol : volumes) {
+      if (!books.contains(vol))
+        books.add(vol);
+    }
+    books.add(new Omnibus(title, volumes));
+  }
+
+  /** --- User adding methods --- */
 
   public void addStudentUser(String name, boolean feePaid) {
     users.add(new Student(name, feePaid));
@@ -66,6 +79,8 @@ public class LibrarySystem {
   public void addAdminUser(String name) {
     users.add(new Admin(name));
   }
+
+  /** --- Finders --- */
 
   public Book findBookByTitle(String title)
       throws UserOrBookDoesNotExistException {
@@ -83,20 +98,32 @@ public class LibrarySystem {
         .orElseThrow(() -> new UserOrBookDoesNotExistException("User \"" + name + "\" does not exist."));
   }
 
+  /** --- Core operations --- */
+
   public void borrowBook(User user, Book book)
       throws UserOrBookDoesNotExistException {
     if (!users.contains(user)) {
       throw new UserOrBookDoesNotExistException(
-          "User \"" + user.getName() + "\" does not exist in the system.");
+          "User \"" + user.getName() + "\" is not registered.");
     }
     if (!books.contains(book)) {
       throw new UserOrBookDoesNotExistException(
-          "Book \"" + book.getTitle() + "\" does not exist in the system.");
+          "Book \"" + book.getTitle() + "\" is not in the catalog.");
     }
+
+    // borrow this item
     book.borrowCopy();
-    Lending l = new Lending(book, user);
-    lendings.add(l);
-    listeners.forEach(lst -> lst.onBookBorrowed(l));
+    Lending lending = new Lending(book, user);
+    lendings.add(lending);
+    listeners.forEach(l -> l.onBookBorrowed(lending));
+
+    // if it's a composite (Omnibus), forward to each volume
+    if (book instanceof Omnibus) {
+      Omnibus omni = (Omnibus) book;
+      for (Book vol : omni.getVolumes()) {
+        borrowBook(user, vol);
+      }
+    }
   }
 
   public void extendLending(FacultyMember facultyMember, Book book, LocalDate newDueDate)
@@ -122,6 +149,8 @@ public class LibrarySystem {
     lendings.remove(found);
     listeners.forEach(lst -> lst.onBookReturned(found));
   }
+
+  /** --- Getters for UI/tests --- */
 
   public List<Book> getBooks() {
     return Collections.unmodifiableList(books);

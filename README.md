@@ -23,6 +23,10 @@ The following has been implemented:
 
 - Added support for multiple book copies and an AvailabilityListener that reports remaining/total copies whenever a book is borrowed or returned.
 
+- Composite Omnibus support: bundle multiple volumes into a single set so that borrowing or returning the set automatically forwards the action to each contained volume.
+
+- Only Admin can bundle selected books into a composite set
+
 ## Todo
 
 - [ ] Extend UI

@@ -1,7 +1,8 @@
 package is.hi.hbv202g.Final.ui;
 
-import is.hi.hbv202g.Final.LibrarySystem;
 import is.hi.hbv202g.Final.Book;
+import is.hi.hbv202g.Final.Omnibus;
+import is.hi.hbv202g.Final.LibrarySystem;
 import is.hi.hbv202g.Final.Author;
 
 import java.util.stream.Collectors;
@@ -30,12 +31,26 @@ public class ListBooksCommand implements Command {
       String authors = b.getAuthors().stream()
           .map(Author::getName)
           .collect(Collectors.joining(", "));
-      System.out.printf(
-          "* Title: %s -- Author(s): %s -- Available: %d/%d%n",
-          b.getTitle(),
-          authors,
-          b.getAvailableCopies(),
-          b.getTotalCopies());
+      // Check for composite sets
+      if (b instanceof Omnibus) {
+        Omnibus set = (Omnibus) b;
+        String volumes = set.getVolumes().stream()
+            .map(Book::getTitle)
+            .collect(Collectors.joining(", "));
+        System.out.printf(
+            "* Title: %s (Set) -- Contains: [%s] -- Available: %d/%d%n",
+            set.getTitle(),
+            volumes,
+            set.getAvailableCopies(),
+            set.getTotalCopies());
+      } else {
+        System.out.printf(
+            "* Title: %s -- Author(s): %s -- Available: %d/%d%n",
+            b.getTitle(),
+            authors,
+            b.getAvailableCopies(),
+            b.getTotalCopies());
+      }
     }
     System.out.println();
   }

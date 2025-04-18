@@ -18,15 +18,16 @@ public class Main {
         LibraryInitializer.seed(library);
 
         List<Command> commands = List.of(
-                new LoginCommand(library, session, scanner), // ← login first
-                new LogoutCommand(session), // ← optional logout
+                new LoginCommand(library, session, scanner),
+                new LogoutCommand(session),
                 new CreateUserCommand(library, scanner),
-                new AddBookCommand(library, scanner, session), // ← now requires session
-                new AddBookMultiAuthorsCommand(library, scanner), // you can guard this too
+                new AddBookCommand(library, scanner, session),
+                new AddBookMultiAuthorsCommand(library, scanner, session),
+                new AddOmnibusCommand(library, scanner, session),
                 new ListBooksCommand(library),
                 new BorrowBookCommand(library, scanner, session),
                 new ReturnBookCommand(library, scanner, session),
-                new ExtendLendingCommand(library, scanner, session), // ← guarded by session
+                new ExtendLendingCommand(library, scanner, session),
                 new ExitCommand());
 
         while (true) {
