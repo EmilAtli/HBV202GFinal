@@ -2,6 +2,7 @@ package is.hi.hbv202g.Final;
 
 import is.hi.hbv202g.Final.listener.FeeListener;
 import is.hi.hbv202g.Final.ui.*;
+import is.hi.hbv202g.Final.util.LibraryInitializer;
 
 import java.util.*;
 
@@ -11,12 +12,16 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         library.addListener(new FeeListener());
 
+        LibraryInitializer.seed(library);
+
         List<Command> commands = List.of(
                 new CreateUserCommand(library, scanner),
                 new AddBookCommand(library, scanner),
+                new AddBookMultiAuthorsCommand(library, scanner),
                 new ListBooksCommand(library),
                 new BorrowBookCommand(library, scanner),
                 new ReturnBookCommand(library, scanner),
+                new ExtendLendingCommand(library, scanner),
                 new ExitCommand());
 
         while (true) {
