@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import static org.junit.Assert.assertTrue;
 
 import is.hi.hbv202g.Final.Book;
+import is.hi.hbv202g.Final.EmptyAuthorListException;
 import is.hi.hbv202g.Final.FacultyMember;
 import is.hi.hbv202g.Final.Lending;
 import is.hi.hbv202g.Final.Student;
@@ -21,7 +22,8 @@ public class FeeListenerTest {
     private Lending facultyLending;
 
     @Before
-    public void setUp() {
+    public void setUp() throws EmptyAuthorListException {
+        // capture stdout
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -53,8 +55,7 @@ public class FeeListenerTest {
     }
 
     @Test
-    public void testOnBookBorrowedMessage() {
-
+    public void testOnBookBorrowedMessage() throws EmptyAuthorListException {
         outContent.reset(); // reset output
 
         Book book = new Book("Test Book", "Author");

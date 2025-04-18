@@ -2,7 +2,6 @@ package is.hi.hbv202g.Final.ui;
 
 import is.hi.hbv202g.Final.Book;
 import is.hi.hbv202g.Final.LibrarySystem;
-import is.hi.hbv202g.Final.Lending;
 import is.hi.hbv202g.Final.User;
 import is.hi.hbv202g.Final.UserOrBookDoesNotExistException;
 

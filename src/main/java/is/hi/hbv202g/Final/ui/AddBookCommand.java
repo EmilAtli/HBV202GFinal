@@ -2,7 +2,6 @@ package is.hi.hbv202g.Final.ui;
 
 import is.hi.hbv202g.Final.LibrarySystem;
 import is.hi.hbv202g.Final.Admin;
-import is.hi.hbv202g.Final.ui.Session;
 import java.util.Scanner;
 
 public class AddBookCommand implements Command {
@@ -37,7 +36,7 @@ public class AddBookCommand implements Command {
     System.out.print("  Number of copies: ");
     int copies = Integer.parseInt(scanner.nextLine().trim());
 
-    library.addBookWithTitleAndNameOfSingleAuthor(title, author);
+    library.addBookWithTitleAndNameOfSingleAuthor(title, author, copies);
     System.out.println("Book added.\n");
   }
 }

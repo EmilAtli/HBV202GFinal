@@ -1,4 +1,3 @@
-// src/main/java/is/hi/hbv202g/Final/Book.java
 package is.hi.hbv202g.Final;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class Book {
     this(title, authors, 1);
   }
 
-  /** Core constructor */
+  /** Constructor */
   public Book(String title, List<Author> authors, int copies) throws EmptyAuthorListException {
     if (authors == null || authors.isEmpty()) {
       throw new EmptyAuthorListException("Author list cannot be empty.");
