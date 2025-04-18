@@ -9,23 +9,30 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         LibrarySystem library = new LibrarySystem();
+        Session session = new Session();
         Scanner scanner = new Scanner(System.in);
         library.addListener(new FeeListener());
 
         LibraryInitializer.seed(library);
 
         List<Command> commands = List.of(
+                new LoginCommand(library, session, scanner), // ← login first
+                new LogoutCommand(session), // ← optional logout
                 new CreateUserCommand(library, scanner),
-                new AddBookCommand(library, scanner),
-                new AddBookMultiAuthorsCommand(library, scanner),
+                new AddBookCommand(library, scanner, session), // ← now requires session
+                new AddBookMultiAuthorsCommand(library, scanner), // you can guard this too
                 new ListBooksCommand(library),
-                new BorrowBookCommand(library, scanner),
-                new ReturnBookCommand(library, scanner),
-                new ExtendLendingCommand(library, scanner),
+                new BorrowBookCommand(library, scanner, session),
+                new ReturnBookCommand(library, scanner, session),
+                new ExtendLendingCommand(library, scanner, session), // ← guarded by session
                 new ExitCommand());
 
         while (true) {
             System.out.println("=== Library Menu ===");
+            System.out.printf("Current user: %s%n%n", // print current user.
+                    session.getCurrentUser() != null
+                            ? session.getCurrentUser().getName()
+                            : "none");
             for (int i = 0; i < commands.size(); i++) {
                 System.out.printf("%d) %s%n", i + 1, commands.get(i).name());
             }

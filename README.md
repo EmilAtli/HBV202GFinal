@@ -17,6 +17,10 @@ The following has been implemented:
 
 - Fee Notifications: Students incur a 100kr/day fee on late returns; Faculty and Admin do not
 
+- Only Admin users can Add Books, Only Faculty users can Extend Lending
+
+- Login/Logout
+
 ## Todo
 
 - [ ] Extend UI
