@@ -13,13 +13,15 @@ The following has been implemented:
 
 - Add/List/Borrow/Return Books via the menu
 
-- User Management: Create Students, FacultyMember, Admin
+- Seed data initializer: On startup we preload sample books/users so you can jump straight into the demo
 
-- Fee Notifications: Students incur a 100kr/day fee on late returns; Faculty and Admin do not
+- User Management (Student, FacultyMember, Admin) with Session‑based Login/Logout
 
-- Only Admin users can Add Books, Only Faculty users can Extend Lending
+- Role enforcement: only Admins can add books; only Faculty can extend lendings
 
-- Login/Logout
+- FeeListener: Students pay 100 kr/day on late returns; Faculty/Admin do not
+
+- Added support for multiple book copies and an AvailabilityListener that reports remaining/total copies whenever a book is borrowed or returned.
 
 ## Todo
 

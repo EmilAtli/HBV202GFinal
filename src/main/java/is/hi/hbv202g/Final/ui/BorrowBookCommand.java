@@ -40,6 +40,9 @@ public class BorrowBookCommand implements Command {
       library.borrowBook(user, book);
       System.out.printf("%s borrowed \"%s\".%n%n", user.getName(), book.getTitle());
 
+    } catch (IllegalStateException ise) {
+      // no copies available
+      System.err.println("! " + ise.getMessage() + "\n");
     } catch (UserOrBookDoesNotExistException e) {
       System.err.println("! Error: " + e.getMessage() + "\n");
     }

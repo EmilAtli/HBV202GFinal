@@ -39,9 +39,11 @@ public class AddBookMultiAuthorsCommand implements Command {
           .map(Author::new)
           .collect(Collectors.toList());
     }
+    System.out.print("  Number of copies: ");
+    int copies = Integer.parseInt(scanner.nextLine().trim());
 
     try {
-      library.addBookWithTitleAndAuthorList(title, authors);
+      library.addBookWithTitleAndAuthorList(title, authors, copies);
       System.out.println("Book added with authors: " +
           authors.stream().map(Author::getName).collect(Collectors.joining(", "))
           + "\n");

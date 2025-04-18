@@ -30,7 +30,12 @@ public class ListBooksCommand implements Command {
       String authors = b.getAuthors().stream()
           .map(Author::getName)
           .collect(Collectors.joining(", "));
-      System.out.printf("* Title: %s -- Author: %s%n", b.getTitle(), authors);
+      System.out.printf(
+          "* Title: %s -- Author(s): %s -- Available: %d/%d%n",
+          b.getTitle(),
+          authors,
+          b.getAvailableCopies(),
+          b.getTotalCopies());
     }
     System.out.println();
   }

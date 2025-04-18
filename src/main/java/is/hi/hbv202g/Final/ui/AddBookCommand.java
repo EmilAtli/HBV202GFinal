@@ -34,6 +34,9 @@ public class AddBookCommand implements Command {
     System.out.print("  Author (single): ");
     String author = scanner.nextLine().trim();
 
+    System.out.print("  Number of copies: ");
+    int copies = Integer.parseInt(scanner.nextLine().trim());
+
     library.addBookWithTitleAndNameOfSingleAuthor(title, author);
     System.out.println("Book added.\n");
   }

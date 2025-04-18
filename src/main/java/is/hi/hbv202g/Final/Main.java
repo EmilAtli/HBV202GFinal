@@ -1,5 +1,6 @@
 package is.hi.hbv202g.Final;
 
+import is.hi.hbv202g.Final.listener.AvailabilityListener;
 import is.hi.hbv202g.Final.listener.FeeListener;
 import is.hi.hbv202g.Final.ui.*;
 import is.hi.hbv202g.Final.util.LibraryInitializer;
@@ -12,6 +13,7 @@ public class Main {
         Session session = new Session();
         Scanner scanner = new Scanner(System.in);
         library.addListener(new FeeListener());
+        library.addListener(new AvailabilityListener());
 
         LibraryInitializer.seed(library);
 
