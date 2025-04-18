@@ -27,13 +27,15 @@ The following has been implemented:
 
 - Only Admin can bundle selected books into a composite set
 
+- JUnit Tests: Business logic and listener behavior
+
 ## Todo
 
-- [ ] Extend UI
+- [x] Extend UI
 
-- [ ] Composite Pattern: support for Omnibus spanning multiple Book volumes.
+- [x] Composite Pattern: support for Omnibus spanning multiple Book volumes.
 
-- [ ] JUnit Tests: Business logic and listener behavior
+- [x] JUnit Tests: Business logic and listener behavior
 
 - [ ] Maven Build: package (fat-jar with dependencies), and site (project reports and Javadoc).
 

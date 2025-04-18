@@ -139,15 +139,29 @@ public class LibrarySystem {
 
   public void returnBook(User user, Book book)
       throws UserOrBookDoesNotExistException {
+    // 1) Find & remove the lending record for this exact book
     Lending found = lendings.stream()
         .filter(l -> l.getBook().equals(book) && l.getUser().equals(user))
         .findFirst()
         .orElseThrow(() -> new UserOrBookDoesNotExistException(
             "No lending for book \"" + book.getTitle() +
                 "\" and user \"" + user.getName() + "\"."));
+
+    // 2) Return the copy on the book container
     book.returnCopy();
+
+    // 3) Remove that lending and fire the listener
     lendings.remove(found);
     listeners.forEach(lst -> lst.onBookReturned(found));
+
+    // 4) If this is an Omnibus, recurse into each volume
+    if (book instanceof Omnibus) {
+      Omnibus omni = (Omnibus) book;
+      for (Book vol : omni.getVolumes()) {
+        // this will return the volume copy, remove its lending, and notify listeners
+        returnBook(user, vol);
+      }
+    }
   }
 
   /** --- Getters for UI/tests --- */

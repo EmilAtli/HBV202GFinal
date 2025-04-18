@@ -1,3 +1,4 @@
+// src/main/java/is/hi/hbv202g/Final/Omnibus.java
 package is.hi.hbv202g.Final;
 
 import java.util.ArrayList;
@@ -7,8 +8,8 @@ import java.util.stream.Collectors;
 
 /**
  * A composite Book that bundles multiple volumes together.
- * Borrowing an Omnibus borrows one copy of the omnibus itself
- * and then forwards the borrow to each contained volume.
+ * Borrowing an Omnibus only borrows the omnibus container itself;
+ * the LibrarySystem recursion will handle borrowing each volume.
  */
 public class Omnibus extends Book {
   private final List<Book> volumes;
@@ -35,19 +36,13 @@ public class Omnibus extends Book {
 
   @Override
   public void borrowCopy() {
-    // borrow the omnibus container
+    // only decrement omnibus itself
     super.borrowCopy();
-    // forward to each child volume
-    for (Book vol : volumes) {
-      vol.borrowCopy();
-    }
   }
 
   @Override
   public void returnCopy() {
+    // only return omnibus itself
     super.returnCopy();
-    for (Book vol : volumes) {
-      vol.returnCopy();
-    }
   }
 }

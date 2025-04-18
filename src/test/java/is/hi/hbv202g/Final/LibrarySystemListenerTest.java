@@ -12,6 +12,10 @@ public class LibrarySystemListenerTest {
     private boolean borrowNotified;
     private boolean returnNotified;
 
+    /**
+     * Set up a LibrarySystem with a few users and books,
+     * and initialize flags for listener notifications.
+     */
     @Before
     public void setUp() {
         library = new LibrarySystem();
@@ -23,6 +27,10 @@ public class LibrarySystemListenerTest {
         returnNotified = false;
     }
 
+    /**
+     * Test that LibraryListeners are notified when books are borrowed and returned.
+     * Uses a test listener to track whether the listener is called.
+     */
     @Test
     public void testListenersAreNotified() throws Exception {
         LibraryListener listener = new LibraryListener() {

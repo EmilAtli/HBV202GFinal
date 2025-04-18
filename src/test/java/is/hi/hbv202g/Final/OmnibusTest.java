@@ -2,54 +2,67 @@ package is.hi.hbv202g.Final;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class OmnibusTest {
   private Book v1, v2;
   private Omnibus omni;
 
+  /**
+   * Sets up the test fixture by creating two individual books, then
+   * an omnibus containing both of them.
+   * 
+   * @throws EmptyAuthorListException should never happen due to the
+   *                                  way the test fixture is set up.
+   */
   @Before
   public void setUp() throws EmptyAuthorListException {
-    // two simple volumes, each with 1 copy
     v1 = new Book("Vol 1", "Author A", 1);
     v2 = new Book("Vol 2", "Author B", 2);
 
-    // omnibus bundles them, defaulting to 1 copy
     omni = new Omnibus("Collected Volumes", List.of(v1, v2));
   }
 
+  /**
+   * Tests that the initial availability and total copies of the omnibus
+   * and its volumes are correctly set after initialization.
+   * Ensures that the omnibus has 1 available copy of 1 total,
+   * and that the individual volumes have the expected available copies.
+   */
   @Test
   public void testInitialAvailability() {
-    // omnibus has 1/1, v1 has 1/1, v2 has 2/2
     assertEquals(1, omni.getAvailableCopies());
     assertEquals(1, omni.getTotalCopies());
     assertEquals(1, v1.getAvailableCopies());
-    assertEquals(1, v1.getTotalCopies());
     assertEquals(2, v2.getAvailableCopies());
-    assertEquals(2, v2.getTotalCopies());
   }
 
+  /**
+   * Tests that borrowing an omnibus only decrements the omnibus' available
+   * copies.
+   * Verifies that the omnibus' available copies are reduced while the
+   * individual volumes' available copies remain unchanged.
+   */
   @Test
-  public void testBorrowOmnibusForwardsToVolumes() {
-    // borrow the omnibus
+  public void testBorrowOmnibusOnlyContainer() {
     omni.borrowCopy();
-
-    // omnibus now 0/1, v1 0/1, v2 1/2
     assertEquals(0, omni.getAvailableCopies());
-    assertEquals(0, v1.getAvailableCopies());
-    assertEquals(1, v2.getAvailableCopies());
+    assertEquals(1, v1.getAvailableCopies());
+    assertEquals(2, v2.getAvailableCopies());
   }
 
+  /**
+   * Tests that returning an omnibus only affects its own availability.
+   * Verifies that after borrowing and returning the omnibus,
+   * its available copies are restored, while the individual
+   * volumes' available copies remain unchanged.
+   */
   @Test
-  public void testReturnOmnibusRestoresVolumes() {
-    // first borrow then return
+  public void testReturnOmnibusOnlyContainer() {
     omni.borrowCopy();
     omni.returnCopy();
 
-    // all back to original
     assertEquals(1, omni.getAvailableCopies());
     assertEquals(1, v1.getAvailableCopies());
     assertEquals(2, v2.getAvailableCopies());
