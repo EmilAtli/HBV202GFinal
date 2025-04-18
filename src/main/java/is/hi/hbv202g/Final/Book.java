@@ -1,4 +1,4 @@
-package is.hi.hbv202g.assignment8;
+package is.hi.hbv202g.Final;
 
 import java.util.ArrayList;
 import java.util.List;

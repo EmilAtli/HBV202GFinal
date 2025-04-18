@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>is.hi.hbv202g.assignment8</groupId>
-    <artifactId>Assignment8</artifactId>
+    <groupId>is.hi.hbv202g.Final</groupId>
+    <artifactId>Final</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>HBV202G Assignment8</name>
+    <name>HBV202G Final Project</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -79,7 +79,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <mainClass>is.hi.hbv202g.assignment8.Main</mainClass>
+                    <mainClass>is.hi.hbv202g.Final.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
