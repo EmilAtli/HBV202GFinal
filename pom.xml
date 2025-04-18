@@ -8,11 +8,20 @@
     <artifactId>Final</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>HBV202G Final Project</name>
+    <name>HBV202G Library Management Final Project</name>
+    <description>A console‑based library management system extended for the HBV202G final project</description>
+    <url>https://github.com/EmilAtli/HBV202GFinal</url>
+
+    <developers>
+      <developer>
+        <id>emil</id>
+        <name>Emil Atli</name>
+        <email>eat8@hi.is</email>
+      </developer>
+     </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- We define here our own variable "java.version" so that we need to adjust it only in the next line and all other lines can use it then -->
         <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>

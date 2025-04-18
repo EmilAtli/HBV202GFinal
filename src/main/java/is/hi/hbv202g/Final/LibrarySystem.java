@@ -1,13 +1,24 @@
 package is.hi.hbv202g.Final;
 
+import is.hi.hbv202g.Final.listener.LibraryListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LibrarySystem {
   private List<Book> books;
   private List<User> users;
   private List<Lending> lendings;
+  private final List<LibraryListener> listeners = new ArrayList<>();
+
+  public void addListener(LibraryListener l) {
+    listeners.add(l);
+  }
+
+  public void removeListener(LibraryListener l) {
+    listeners.remove(l);
+  }
 
   public LibrarySystem() {
     this.books = new ArrayList<>();
@@ -62,6 +73,8 @@ public class LibrarySystem {
     }
     Lending lending = new Lending(book, user);
     lendings.add(lending);
+    for (var l : listeners)
+      l.onBookBorrowed(lending);
   }
 
   public void extendLending(FacultyMember facultyMember, Book book, LocalDate newDueDate)
@@ -93,6 +106,24 @@ public class LibrarySystem {
           + book.getTitle() + "\" and user \"" + user.getName() + "\".");
     }
     lendings.remove(foundLending);
+    for (var l : listeners)
+      l.onBookReturned(foundLending);
+  }
+
+  public List<Book> getBooks() {
+    return Collections.unmodifiableList(books);
+  }
+
+  public List<User> getUsers() {
+    return Collections.unmodifiableList(users);
+  }
+
+  public List<Lending> getLendings() {
+    return Collections.unmodifiableList(lendings);
+  }
+
+  public void addAdminUser(String name) {
+    users.add(new Admin(name));
   }
 
 }
