@@ -10,11 +10,21 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+/**
+ * Command for returning a book to the library.
+ */
 public class ReturnBookCommand implements Command {
   private final LibrarySystem library;
   private final Scanner scanner;
   private final Session session;
 
+  /**
+   * Creates a new ReturnBookCommand.
+   * 
+   * @param library The library system.
+   * @param session The session.
+   * @param scanner The scanner.
+   */
   public ReturnBookCommand(LibrarySystem library, Scanner scanner, Session session) {
     this.library = library;
     this.scanner = scanner;

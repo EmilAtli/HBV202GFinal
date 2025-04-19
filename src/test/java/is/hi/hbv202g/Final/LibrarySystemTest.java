@@ -33,7 +33,6 @@ public class LibrarySystemTest {
     lib.addAdminUser("Admin");
     student = (Student) lib.findUserByName("Alice");
     faculty = (FacultyMember) lib.findUserByName("Prof");
-    admin = (Admin) lib.findUserByName("Admin");
 
     // books
     lib.addBookWithTitleAndNameOfSingleAuthor("Book One", "Auth1");

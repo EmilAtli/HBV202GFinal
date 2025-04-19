@@ -2,6 +2,9 @@ package is.hi.hbv202g.Final.ui;
 
 import is.hi.hbv202g.Final.User;
 
+/**
+ * Class for keeping track of the currently logged in user.
+ */
 public class Session {
   private User currentUser;
 

@@ -9,7 +9,6 @@ import java.util.*;
 
 /**
  * Entry point for the library management application.
- * <p>
  * Initializes the library system, registers event listeners, seeds initial
  * data,
  * and runs an interactive command-line menu until the user exits.

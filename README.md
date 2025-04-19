@@ -1,51 +1,131 @@
-# HBV202G - Final Project
+# HBV202G Library Management Final Project
 
-## How to Run
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Run the following in a shell.
+A console‑based library management system demonstrating Java, Maven, JUnit, UML, design patterns, and repeatable packaging.
 
-- **Linux/Mac** users: ./runjar.sh
-- **Windows users:** ./runjar.cmd
+---
+
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Maven Goals](#maven-goals)
+3. [Packaging & Running](#packaging--running)
+4. [Design Documentation](#design-documentation)
+5. [Generated Documentation](#generated-documentation)
+6. [Features](#features)
+7. [Acknowledgments](#Acknowledgments)
+8. [License](#license)
+
+---
 
 ## Overview
 
-This is the final project for HBV202G, building on the simple library management system from assignment 8.  
-The following has been implemented:
+This project implements a simple library system with:
 
-- Textual User Interface: A menu console UI implemented with the Command pattern using scanner.
+- **Domain model**: `Book`, `Author`, `User` hierarchy (`Student`, `FacultyMember`, `Admin`), `Lending`, `Omnibus`.
+- **Event listeners**: `FeeListener`, `AvailabilityListener` (Observer pattern).
+- **CLI UI**: a `Command` interface with concrete commands for login/logout, book management, lending operations, etc.
+- **Packaging**: Maven Assembly Plugin produces a fat JAR; cross‑platform shell scripts for build & run.
 
-- Observer Pattern: LibrarySystem fires events (onBookBorrowed, onBookReturned) to registered LibraryListener implementations.
+---
 
-## Features Implemented
+## Maven Goals
 
-- Add/List/Borrow/Return Books via the menu
+Use the following Maven commands:
 
-- Seed data initializer: On startup we preload sample books/users so you can jump straight into the demo
+```bash
+mvn clean        # remove previous build artifacts
+mvn compile      # compile source code
+mvn test         # run JUnit tests (business logic only)
+mvn package      # compile + create fat JAR (Final-1.0-SNAPSHOT-all.jar)
+mvn exec:java    # run the application via Maven
+mvn site         # generate project site (Markdown + Javadoc)
+```
 
-- User Management (Student, FacultyMember, Admin) with Session‑based Login/Logout
+## Packaging & Running
 
-- Role enforcement: only Admins can add books; only Faculty can extend lendings
+### Build the fat JAR
 
-- FeeListener: Students pay 100 kr/day on late returns; Faculty/Admin do not
+```bash
+# macOS/Linux
+./createjar.sh
 
-- Added support for multiple book copies and an AvailabilityListener that reports remaining/total copies whenever a book is borrowed or returned.
+# Windows
+./createjar.cmd
+```
 
-- Composite Omnibus support: bundle multiple volumes into a single set so that borrowing or returning the set automatically forwards the action to each contained volume.
+This runs mvn clean package and copies
+`target/Final-1.0-SNAPSHOT-all-jar-with-dependencies.jar` → `library-app.jar`
 
-- Only Admin can bundle selected books into a composite set
+### Run the application
 
-- JUnit Tests: Business logic and listener behavior
+```bash
+# macOS/Linux
+./runjar.sh
 
-## Todo
+# Windows
+./runjar.cmd
+```
 
-- [x] Extend UI
+No IDE or Maven required. Just a Java runtime.
 
-- [x] Composite Pattern: support for Omnibus spanning multiple Book volumes.
+## Design Documentation
 
-- [x] JUnit Tests: Business logic and listener behavior
+You’ll find detailed design docs in the `src/site/markdown/` folder (automatically published by mvn site):
 
-- [ ] Maven Build: package (fat-jar with dependencies), and site (project reports and Javadoc).
+- UML Class Diagram: `target/site/markdown/UML.html`
 
-- [ ] Packaging Scripts: build.sh and run.sh for easy build and execution without Maven.
+- Design Patterns: `target/site/markdown/DesignPatterns.html`
 
-- [ ] Generate and include UML diagrams in docs/
+## Generated Documentation
+
+To view the full Maven generated site locally:
+
+```bash
+mvn clean site
+# then open:
+# macOS:
+open target/site/index.html
+# Linux:
+xdg-open target/site/index.html
+# Windows:
+start target\site\index.html
+```
+
+The site includes:
+
+- Home page (overview & README content)
+
+- Design pages (UML & patterns)
+
+- API Javadoc under API → Javadoc
+
+## Features
+
+- **User** Management: Student, FacultyMember, Admin, with session‑based login/logout.
+
+- **Role Enforcement:** Only Admins may add books; only Faculty can extend lendings.
+
+- **Book Operations:** Add, List, Borrow, Return books via a menu‑driven CLI.
+
+- **Seed Data:** `LibraryInitializer.seed(...)` preloads sample users/books on startup.
+
+- **Fees:** `FeeListener` charges late fees for Students; Faculty/Admin exempt.
+
+- **Availability Notifications:** `AvailabilityListener` prints remaining/total copies on borrow/return.
+
+- **Composite Omnibus:** Bundle multiple `Book` volumes into an `Omnibus`; borrowing/returning cascades to each volume.
+
+- **JUnit Tests:** Coverage for business logic and listeners (non‑UI).
+
+**Packaging Scripts:** `createjar.sh`/`.cmd` & `runjar.sh`/`.cmd` for repeatable, Maven‑free distribution.
+
+## Acknowledgments
+
+This project was originally bootstrapped from Helmut Wolfram Neukirchen’s skeleton:
+[HBV202GAssignment8](https://github.com/helmutneukirchen/HBV202GAssignment8).
+
+## License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).

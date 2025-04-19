@@ -4,10 +4,19 @@ import is.hi.hbv202g.Final.LibrarySystem;
 
 import java.util.Scanner;
 
+/**
+ * Command for creating a new user in the library system.
+ */
 public class CreateUserCommand implements Command {
   private final LibrarySystem library;
   private final Scanner scanner;
 
+  /**
+   * Creates a new CreateUserCommand with the given library system and scanner.
+   *
+   * @param library the library system
+   * @param scanner the scanner
+   */
   public CreateUserCommand(LibrarySystem library, Scanner scanner) {
     this.library = library;
     this.scanner = scanner;

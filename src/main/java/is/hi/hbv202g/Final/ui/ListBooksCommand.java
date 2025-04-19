@@ -7,9 +7,17 @@ import is.hi.hbv202g.Final.Author;
 
 import java.util.stream.Collectors;
 
+/**
+ * Command for listing all books in the library.
+ */
 public class ListBooksCommand implements Command {
   private final LibrarySystem library;
 
+  /**
+   * Constructor for ListBooksCommand.
+   * 
+   * @param library the library system
+   */
   public ListBooksCommand(LibrarySystem library) {
     this.library = library;
   }
@@ -24,7 +32,12 @@ public class ListBooksCommand implements Command {
 
   /**
    * Prints a list of all books in the library to the console.
-   * The format is "Title -- Author(s) -- Available: <num> / <total>".
+   * The format is:
+   * 
+   * <pre>
+   *   Title -- Author(s) -- Available: {@literal <num>} / {@literal <total>}
+   * </pre>
+   * 
    * If the book is an Omnibus, it prints "Title (Set) -- Contains: [list of
    * titles] -- Available: <num> / <total>".
    */

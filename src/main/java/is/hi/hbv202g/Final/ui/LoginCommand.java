@@ -6,11 +6,21 @@ import is.hi.hbv202g.Final.UserOrBookDoesNotExistException;
 
 import java.util.Scanner;
 
+/**
+ * Command for logging in a user.
+ */
 public class LoginCommand implements Command {
   private final LibrarySystem library;
   private final Session session;
   private final Scanner scanner;
 
+  /**
+   * Creates a new LoginCommand.
+   * 
+   * @param library The library system.
+   * @param session The session.
+   * @param scanner The scanner.
+   */
   public LoginCommand(LibrarySystem library, Session session, Scanner scanner) {
     this.library = library;
     this.session = session;

@@ -11,7 +11,10 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>HBV202G Library Management Final Project</name>
-  <description>A console based library system showcasing Git, Maven, JUnit, UML, design patterns, and packaging</description>
+  <description>
+    A console based library system showcasing Git, Maven, JUnit, UML,
+    design patterns, and packaging
+  </description>
   <url>https://github.com/EmilAtli/HBV202GFinal</url>
 
   <licenses>
@@ -51,20 +54,41 @@
     <pluginManagement>
       <plugins>
         <!-- lock plugin versions -->
-        <plugin><artifactId>maven-clean-plugin</artifactId><version>3.3.2</version></plugin>
-        <plugin><artifactId>maven-resources-plugin</artifactId><version>3.3.1</version></plugin>
-        <plugin><artifactId>maven-compiler-plugin</artifactId><version>3.12.1</version></plugin>
-        <plugin><artifactId>maven-surefire-plugin</artifactId><version>3.2.5</version></plugin>
-        <plugin><artifactId>maven-jar-plugin</artifactId><version>3.3.0</version></plugin>
-        <plugin><artifactId>maven-site-plugin</artifactId><version>3.11.0</version></plugin>
-        <plugin><artifactId>maven-project-info-reports-plugin</artifactId><version>3.5.0</version></plugin>
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.3.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.3.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.12.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.2.5</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.3.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.5.0</version>
+        </plugin>
       </plugins>
     </pluginManagement>
 
     <plugins>
       <!-- 1) compile & test -->
-      <plugin><artifactId>maven-compiler-plugin</artifactId></plugin>
-      <plugin><artifactId>maven-surefire-plugin</artifactId></plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
 
       <!-- 2) exec:java -->
       <plugin>
@@ -96,7 +120,9 @@
           <execution>
             <id>make-fat-jar</id>
             <phase>package</phase>
-            <goals><goal>single</goal></goals>
+            <goals>
+              <goal>single</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
@@ -110,13 +136,33 @@
           <source>${java.version}</source>
         </configuration>
       </plugin>
+
+      <!-- 5) site generation -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.11.0</version>
+      </plugin>
     </plugins>
   </build>
 
   <reporting>
     <plugins>
-      <plugin><artifactId>maven-project-info-reports-plugin</artifactId></plugin>
-      <plugin><artifactId>maven-javadoc-plugin</artifactId></plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.5.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.6.2</version>
+        <configuration>
+          <failOnError>false</failOnError>
+          <doclint>none</doclint>
+          <source>${java.version}</source>
+        </configuration>  
+      </plugin>
     </plugins>
   </reporting>
 </project>

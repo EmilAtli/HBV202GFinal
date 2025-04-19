@@ -1,8 +1,16 @@
 package is.hi.hbv202g.Final.ui;
 
+/**
+ * Command for logging out a user.
+ */
 public class LogoutCommand implements Command {
   private final Session session;
 
+  /**
+   * Creates a new LogoutCommand.
+   * 
+   * @param session The session.
+   */
   public LogoutCommand(Session session) {
     this.session = session;
   }

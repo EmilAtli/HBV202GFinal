@@ -9,11 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Command for adding an omnibus to the library.
+ */
 public class AddOmnibusCommand implements Command {
   private final LibrarySystem library;
   private final Scanner scanner;
   private final Session session;
 
+  /**
+   * Creates a new OmnibusCommand.
+   *
+   * @param library the library system to add books into; must not be null
+   * @param scanner the Scanner to read user input; must not be null
+   * @param session the current user session, used to check for admin privileges;
+   *                must not be null
+   */
   public AddOmnibusCommand(LibrarySystem library, Scanner scanner, Session session) {
     this.library = library;
     this.scanner = scanner;

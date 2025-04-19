@@ -4,6 +4,9 @@ import is.hi.hbv202g.Final.Lending;
 import is.hi.hbv202g.Final.Book;
 import java.util.Locale;
 
+/**
+ * A listener that keeps track of the availability of books in the library.
+ */
 public class AvailabilityListener implements LibraryListener {
   /**
    * Called when a book is borrowed from the library.

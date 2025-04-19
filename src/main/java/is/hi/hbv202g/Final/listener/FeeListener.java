@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Locale;
 
+/**
+ * A listener that keeps track of overdue fees for students.
+ */
 public class FeeListener implements LibraryListener {
   private static final double DAILY_FEE = 100.0; // 100kr/day
 
