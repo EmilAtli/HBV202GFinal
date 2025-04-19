@@ -1,5 +1,12 @@
 # HBV202G - Final Project
 
+## How to Run
+
+Run the following in a shell.
+
+- **Linux/Mac** users: ./runjar.sh
+- **Windows users:** ./runjar.cmd
+
 ## Overview
 
 This is the final project for HBV202G, building on the simple library management system from assignment 8.  

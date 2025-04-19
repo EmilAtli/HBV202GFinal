@@ -90,6 +90,7 @@
               <mainClass>is.hi.hbv202g.Final.Main</mainClass>
             </manifest>
           </archive>
+          <finalName>${project.artifactId}-${project.version}-all</finalName>
         </configuration>
         <executions>
           <execution>

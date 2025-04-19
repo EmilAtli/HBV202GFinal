@@ -1,4 +1,3 @@
-// src/test/java/is/hi/hbv202g/Final/LibrarySystemTest.java
 package is.hi.hbv202g.Final;
 
 import org.junit.Before;
@@ -13,7 +12,6 @@ public class LibrarySystemTest {
   private LibrarySystem lib;
   private Student student;
   private FacultyMember faculty;
-  private Admin admin;
   private Book book1;
   private Book book2;
   private Book omnibus;
