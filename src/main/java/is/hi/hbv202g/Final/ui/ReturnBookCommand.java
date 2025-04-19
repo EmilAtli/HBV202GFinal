@@ -21,11 +21,22 @@ public class ReturnBookCommand implements Command {
     this.session = session;
   }
 
+  /**
+   * @return the command name
+   */
   @Override
   public String name() {
     return "Return Book";
   }
 
+  /**
+   * Prompts the user to select one of their current lendings to return.
+   * If the user is not logged in, an error message is printed.
+   * If the user has no current lendings, an error message is printed.
+   * If the user enters an invalid number, an error message is printed.
+   * If the book is not found, an error message is printed.
+   * Otherwise, the lending is removed from the library, and the book is returned.
+   */
   @Override
   public void execute() {
     User user = session.getCurrentUser();

@@ -5,6 +5,11 @@ import is.hi.hbv202g.Final.Book;
 import java.util.Locale;
 
 public class AvailabilityListener implements LibraryListener {
+  /**
+   * Called when a book is borrowed from the library.
+   * 
+   * @param lending The newly-created Lending that records the borrowing.
+   */
   @Override
   public void onBookBorrowed(Lending lending) {
     Book b = lending.getBook();
@@ -19,6 +24,13 @@ public class AvailabilityListener implements LibraryListener {
     }
   }
 
+  /**
+   * Called when a book is returned to the library.
+   * 
+   * @param lending The Lending record associated with the returned book.
+   *                Displays the current number of available copies of the book in
+   *                the library.
+   */
   @Override
   public void onBookReturned(Lending lending) {
     Book b = lending.getBook();

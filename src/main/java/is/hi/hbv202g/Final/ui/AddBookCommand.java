@@ -15,11 +15,18 @@ public class AddBookCommand implements Command {
     this.session = session;
   }
 
+  /**
+   * @return the command name
+   */
   @Override
   public String name() {
     return "Add Book (single author) (admin only)";
   }
 
+  /**
+   * Prompts the user for a title, author and number of copies to add a
+   * book to the library. Only admins can add books.
+   */
   @Override
   public void execute() {
 

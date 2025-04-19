@@ -1,4 +1,3 @@
-// src/main/java/is/hi/hbv202g/Final/Omnibus.java
 package is.hi.hbv202g.Final;
 
 import java.util.ArrayList;
@@ -7,17 +6,33 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * A composite Book that bundles multiple volumes together.
- * Borrowing an Omnibus only borrows the omnibus container itself;
- * the LibrarySystem recursion will handle borrowing each volume.
+ * A composite {@link Book} that bundles multiple volumes together under one
+ * title.
+ * <p>
+ * The omnibus itself counts as one copy but internally tracks individual
+ * volumes.
+ * Borrowing or returning an omnibus container will delegate handling of each
+ * volume
+ * via the {@link LibrarySystem} recursive logic.
  */
 public class Omnibus extends Book {
+
   private final List<Book> volumes;
 
+  /**
+   * Constructs a new Omnibus containing the specified volumes.
+   * <p>
+   * The omnibus title inherits the combined authors of all volumes.
+   * Exactly one copy of the omnibus is created.
+   *
+   * @param title   the omnibus title; must not be null or empty
+   * @param volumes the list of volume books to include; must not be null or empty
+   * @throws EmptyAuthorListException if any volume has no authors
+   * @throws IllegalArgumentException if volumes is null or empty
+   */
   public Omnibus(String title, List<Book> volumes) throws EmptyAuthorListException {
     super(
         title,
-        // combine all authors from the volumes
         volumes.stream()
             .flatMap(v -> v.getAuthors().stream())
             .distinct()
@@ -29,20 +44,30 @@ public class Omnibus extends Book {
     this.volumes = new ArrayList<>(volumes);
   }
 
-  /** The individual volumes collected in this omnibus. */
+  /**
+   * Returns an unmodifiable view of the individual volumes in this omnibus.
+   *
+   * @return read-only list of volume books
+   */
   public List<Book> getVolumes() {
     return Collections.unmodifiableList(volumes);
   }
 
+  /**
+   * Borrows one copy of the omnibus container itself.
+   * Individual volume borrowings are handled by {@link LibrarySystem}.
+   */
   @Override
   public void borrowCopy() {
-    // only decrement omnibus itself
     super.borrowCopy();
   }
 
+  /**
+   * Returns one copy of the omnibus container itself.
+   * Individual volume returns are handled by {@link LibrarySystem}.
+   */
   @Override
   public void returnCopy() {
-    // only return omnibus itself
     super.returnCopy();
   }
 }

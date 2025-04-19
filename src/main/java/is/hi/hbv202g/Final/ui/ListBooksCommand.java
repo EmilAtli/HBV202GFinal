@@ -14,11 +14,20 @@ public class ListBooksCommand implements Command {
     this.library = library;
   }
 
+  /**
+   * @return the command name
+   */
   @Override
   public String name() {
     return "List Books";
   }
 
+  /**
+   * Prints a list of all books in the library to the console.
+   * The format is "Title -- Author(s) -- Available: <num> / <total>".
+   * If the book is an Omnibus, it prints "Title (Set) -- Contains: [list of
+   * titles] -- Available: <num> / <total>".
+   */
   @Override
   public void execute() {
     var books = library.getBooks();

@@ -15,7 +15,13 @@ import java.util.List;
  */
 public class LibraryInitializer {
 
-  /** Add a few sample books & users, plus a LOTR omnibus. */
+  /**
+   * Initializes a LibrarySystem with some sample books and users. This
+   * includes a few single-author books, a multi-author book, and an omnibus
+   * containing three volumes of The Lord of the Rings.
+   * 
+   * @param lib the LibrarySystem to initialize
+   */
   public static void seed(LibrarySystem lib) {
     // single‑author picks
     lib.addBookWithTitleAndNameOfSingleAuthor("Effective Java", "Joshua Bloch");

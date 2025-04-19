@@ -20,11 +20,27 @@ public class AddOmnibusCommand implements Command {
     this.session = session;
   }
 
+  /**
+   * @return the command name
+   */
   @Override
   public String name() {
     return "Bundle Books into Set (admins only)";
   }
 
+  /**
+   * Bundle multiple books together into an omnibus.
+   * This command can only be used by admins.
+   * The user is prompted to select the books to be bundled
+   * by entering the numbers of the desired books when shown
+   * the catalog of all books in the system, then prompted to
+   * enter the title of the new omnibus.
+   * The new omnibus is then added to the catalog, and the
+   * user is shown its title and the titles of the books in it.
+   * If the user selects no books, or if the user is not an admin
+   * or if there are fewer than two books in the catalog, the
+   * command does nothing and shows an appropriate error message.
+   */
   @Override
   public void execute() {
     // only admins may bundle

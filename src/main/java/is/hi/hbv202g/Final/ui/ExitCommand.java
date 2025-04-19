@@ -6,6 +6,9 @@ public class ExitCommand implements Command {
     return "Exit";
   }
 
+  /**
+   * Exits the program.
+   */
   @Override
   public void execute() {
     System.out.println("Goodbye!");

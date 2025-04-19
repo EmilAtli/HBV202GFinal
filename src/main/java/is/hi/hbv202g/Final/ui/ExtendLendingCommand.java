@@ -21,11 +21,19 @@ public class ExtendLendingCommand implements Command {
     this.session = session;
   }
 
+  /**
+   * @return the command name
+   */
   @Override
   public String name() {
     return "Extend Lending (faculty only)";
   }
 
+  /**
+   * Prompts the user for a book title and new due date to extend
+   * the lending of a book. Only faculty members can extend lendings.
+   * If the book is not found, an error message is printed.
+   */
   @Override
   public void execute() {
     User u = session.getCurrentUser();

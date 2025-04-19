@@ -7,11 +7,19 @@ public class LogoutCommand implements Command {
     this.session = session;
   }
 
+  /**
+   * @return the command name "Logout"
+   */
   @Override
   public String name() {
     return "Logout";
   }
 
+  /**
+   * Logs out the user. If a user is logged in, the user is logged out and
+   * the session is updated. If no user is logged in, an error message is
+   * printed.
+   */
   @Override
   public void execute() {
     if (session.getCurrentUser() != null) {

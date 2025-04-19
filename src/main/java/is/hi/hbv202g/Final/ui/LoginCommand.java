@@ -17,11 +17,21 @@ public class LoginCommand implements Command {
     this.scanner = scanner;
   }
 
+  /**
+   * Returns the command name based on the current user's session.
+   * 
+   * @return "Login" if no user is logged in, otherwise "Switch User".
+   */
   @Override
   public String name() {
     return session.getCurrentUser() == null ? "Login" : "Switch User";
   }
 
+  /**
+   * Prompts the user for a username to log in. If the username matches a user
+   * in the library, the user is logged in and the session is updated.
+   * Otherwise, an error message is printed.
+   */
   @Override
   public void execute() {
     System.out.print("Username: ");

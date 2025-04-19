@@ -13,10 +13,27 @@ public class CreateUserCommand implements Command {
     this.scanner = scanner;
   }
 
+  /**
+   * Returns the name of the command.
+   *
+   * @return the command name "Create User"
+   */
   @Override
   public String name() {
     return "Create User";
   }
+
+  /**
+   * Executes the command to create a new user in the library system.
+   * Prompts the user to select the type of user to create: Student,
+   * Faculty Member, or Admin. Collects the necessary information
+   * based on the user type selected.
+   * For a Student, asks if the fee is paid.
+   * For a Faculty Member, asks for the department.
+   * For an Admin, no additional information is needed.
+   * Adds the user to the library system and prints a confirmation message.
+   * Prints an error message if an invalid user type is selected.
+   */
 
   @Override
   public void execute() {

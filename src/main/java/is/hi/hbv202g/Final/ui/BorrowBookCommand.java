@@ -18,11 +18,19 @@ public class BorrowBookCommand implements Command {
     this.session = session;
   }
 
+  /**
+   * @return the command name
+   */
   @Override
   public String name() {
     return "Borrow Book";
   }
 
+  /**
+   * Prompts the user for a book title to borrow. Only users that are logged in
+   * can borrow books.
+   * If the book is not available, an error message is printed.
+   */
   @Override
   public void execute() {
     User user = session.getCurrentUser();
