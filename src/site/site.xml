@@ -12,8 +12,8 @@
     </menu>
 
     <menu name="Design">
-      <item name="UML Class Diagram"    href="markdown/UML.html"/>
-      <item name="Design Patterns"      href="markdown/DesignPatterns.html"/>
+      <item name="UML Class Diagram"    href="UML.html"/>
+      <item name="Design Patterns"      href="DesignPatterns.html"/>
     </menu>
 
     <menu name="API">
