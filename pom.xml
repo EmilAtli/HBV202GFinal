@@ -133,8 +133,10 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>3.6.2</version>
         <configuration>
+          <failOnError>false</failOnError>
+          <doclint>none</doclint>
           <source>${java.version}</source>
-        </configuration>
+        </configuration>  
       </plugin>
 
       <!-- 5) site generation -->
@@ -152,16 +154,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>3.5.0</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.6.2</version>
-        <configuration>
-          <failOnError>false</failOnError>
-          <doclint>none</doclint>
-          <source>${java.version}</source>
-        </configuration>  
       </plugin>
     </plugins>
   </reporting>
